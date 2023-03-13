@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5f44e3813fb65e3409b37b22fa5e1aa5
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - PF Agora Sans Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 08685c4aa47b1d14ea30ace97fc84a28, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

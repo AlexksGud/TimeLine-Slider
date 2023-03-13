@@ -15,7 +15,7 @@ public class MainSliderValueView: MonoBehaviour
     private void Update()
     {
 
-        _text.text = _slider.Value.ToString("C0");
+        _text.text = _slider.Value.ToString("F1");
     }
    
 

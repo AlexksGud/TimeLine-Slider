@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6d176a7211fb661458a2927e7b4430e2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Luga
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8412cbfcb18cac2418dd73bc7e9ce841, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
