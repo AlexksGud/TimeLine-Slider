@@ -14,6 +14,7 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
     private RectTransform timelineTransform;
     public float scrollVelocity = 0f;
 
+
     public float maxScrollVelocity;
     public float targetThreshold = 5f;
 
@@ -111,14 +112,14 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
     {
         _timerStarted = true;
         float timetotal = 0;
-        //Счетчик афк
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
         while (timetotal < AFKinSecons)
         {
             timetotal += Time.deltaTime;
             yield return null;
         }
 
-        //Двигаем слайд
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         var lenght = timelineTransform.anchoredPosition.x + 2;
         while (lenght <= TimelineRect.sizeDelta.x)
         {
@@ -135,16 +136,18 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
 
 
     }
+
+
+
     public Texture2D _texture;
     public RawImage _screenSlot;
     public UITransitionEffect _cap;
+    public RenderTexture rd;
     [Button]
     public void MoveTo() 
     {
         StartCoroutine(StopAndScreen());
-    
-
-
+   
     } 
     IEnumerator StopAndScreen()
     {
@@ -152,7 +155,8 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
         scrollVelocity = 0f;
         yield return null;
         yield return new WaitForEndOfFrame();
-        _screenSlot.texture = ScreenCapture.CaptureScreenshotAsTexture();
+        //_screenSlot.texture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
+        ScreenCapture.CaptureScreenshotIntoRenderTexture(rd);
         _cap.Show();
        
 

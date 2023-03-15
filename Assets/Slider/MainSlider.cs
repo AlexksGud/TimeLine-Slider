@@ -34,6 +34,10 @@ public class MainSlider : MonoBehaviour
         return (value - fromMin) / (fromMax - fromMin) * (toMax - toMin) + toMin;
     }
 
+    public void EnableTimeline(bool value)
+    {
+        _scrollRect.enabled = value;
+    }
 
     public void HideTimeline(SliderHideType type)
     {
@@ -47,6 +51,7 @@ public class MainSlider : MonoBehaviour
                 break;
         }
     }
+
 
 }
 public enum SliderHideType
