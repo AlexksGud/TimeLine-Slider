@@ -7,7 +7,7 @@ public class TESTSTART : PARENTTEST
     // Start is called before the first frame update
     void Start()
     {
-        print("Hello son start");
+        print("Hello son _startLocalPos");
     }
 
    
@@ -20,6 +20,6 @@ public class PARENTTEST : MonoBehaviour
     }
     private void Start()
     {
-        print("Hello parent start");
+        print("Hello parent _startLocalPos");
     }
 }

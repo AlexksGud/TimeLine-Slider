@@ -75,7 +75,7 @@ namespace Coffee.UIExtensions
 		//################################
 
 		/// <summary>
-		/// Effect factor between 0(start) and 1(end).
+		/// Effect factor between 0(_startLocalPos) and 1(end).
 		/// </summary>
 		[System.Obsolete("Use effectFactor instead (UnityUpgradable) -> effectFactor")]
 		public float location
@@ -93,7 +93,7 @@ namespace Coffee.UIExtensions
 		}
 
 		/// <summary>
-		/// Effect factor between 0(start) and 1(end).
+		/// Effect factor between 0(_startLocalPos) and 1(end).
 		/// </summary>
 		public float effectFactor
 		{

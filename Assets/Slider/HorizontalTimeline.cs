@@ -9,16 +9,33 @@ using UnityEngine.UI;
 
 public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
-    public float scrollSpeed = 10f; // The speed at which the timeline scrolls
-    public float inertiaDecelerationRate = 0.975f; // The rate at which the scrolling speed decelerates after a touch ends
-    private RectTransform timelineTransform;
+    public float scrollSpeed = 10f; // The _followSpeed at which the timeline scrolls
+    public float inertiaDecelerationRate = 0.975f; // The rate at which the scrolling _followSpeed decelerates after a touch ends
+   
     public float scrollVelocity = 0f;
 
 
     public float maxScrollVelocity;
     public float targetThreshold = 5f;
+    public float inertiaMulti;
 
+    public float minRange;
+
+    private RectTransform timelineTransform;
     public RectTransform TimelineRect => timelineTransform;
+
+    private IFocusPoint _slideFocus;
+    public IFocusPoint SlideCorutinine 
+    { 
+        set 
+        {
+            if (_slideFocus != null) 
+                _slideFocus.StopFocus();
+
+            _slideFocus = value;
+        } 
+    }
+
     private void Awake()
     {
         timelineTransform = GetComponent<RectTransform>();
@@ -44,7 +61,7 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
             {
                 // Calculate the scroll delta based on the current velocity
                 float scrollDelta = Time.deltaTime * scrollVelocity;
-                var x = Mathf.Clamp(timelineTransform.anchoredPosition.x - scrollDelta, -TimelineRect.sizeDelta.x,0);
+                var x = Mathf.Clamp(timelineTransform.anchoredPosition.x - scrollDelta, -TimelineRect.sizeDelta.x, minRange);
                 // Move the timeline based on the scroll delta
                 timelineTransform.anchoredPosition = new Vector2(x, 0f);
 
@@ -69,19 +86,19 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
     }
     public bool IsDraging { get;private set; }
 
-    public FocusPoint SlideCorutinine { get; internal set; }
+  
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Stop scrolling when the user begins dragging the timeline
         _dragEnd = false;
         StopCoroutine(nameof(NoTouchTimer));
         _timerStarted = false;
-        IsDraging =true;
+        IsDraging = true;
 
 
-        if (SlideCorutinine != null)
+        if (_slideFocus != null)
         {
-            SlideCorutinine.StopSlide();
+            _slideFocus.StopFocus();
             SlideCorutinine = null;
         }
     }
@@ -91,12 +108,12 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
 
         // Move the timeline based on the touch delta
         var delta = eventData.delta.x * scrollSpeed;
-        var x = Mathf.Clamp(timelineTransform.anchoredPosition.x + delta , -TimelineRect.sizeDelta.x, 0);
+        var x = Mathf.Clamp(timelineTransform.anchoredPosition.x + delta , -TimelineRect.sizeDelta.x, minRange);
 
         timelineTransform.anchoredPosition = new Vector2(x, 0f);
 
         float touchTime = Time.time - eventData.clickTime;
-        scrollVelocity = (eventData.delta.x / touchTime) * 9f;
+        scrollVelocity = (eventData.delta.x / touchTime) * inertiaMulti;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -112,19 +129,19 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
     {
         _timerStarted = true;
         float timetotal = 0;
-        //������� ���
+       
         while (timetotal < AFKinSecons)
         {
             timetotal += Time.deltaTime;
             yield return null;
         }
 
-        //������� �����
+
         var lenght = timelineTransform.anchoredPosition.x + 2;
         while (lenght <= TimelineRect.sizeDelta.x)
         {
 
-            var x = Mathf.Clamp(timelineTransform.anchoredPosition.x - afkscrollspeed * Time.deltaTime, -TimelineRect.sizeDelta.x,0 );
+            var x = Mathf.Clamp(timelineTransform.anchoredPosition.x - afkscrollspeed * Time.deltaTime, -TimelineRect.sizeDelta.x, minRange);
 
             timelineTransform.anchoredPosition = new Vector2(x, 0f);
 
@@ -137,29 +154,5 @@ public class HorizontalTimeline : MonoBehaviour, IDragHandler, IEndDragHandler, 
 
     }
 
-
-
-    public Texture2D _texture;
-    public RawImage _screenSlot;
-    public UITransitionEffect _cap;
-    public RenderTexture rd;
-    [Button]
-    public void MoveTo() 
-    {
-        StartCoroutine(StopAndScreen());
-   
-    } 
-    IEnumerator StopAndScreen()
-    {
-        _dragEnd = false;
-        scrollVelocity = 0f;
-        yield return null;
-        yield return new WaitForEndOfFrame();
-        //_screenSlot.texture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
-        ScreenCapture.CaptureScreenshotIntoRenderTexture(rd);
-        _cap.Show();
-       
-
-    }
 
 }

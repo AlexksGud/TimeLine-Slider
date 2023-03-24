@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class FocusPoint : ContentInTimeLine
+public class FocusPoint : ContentInTimeLine,IFocusPoint
 {
     [SerializeField] private HorizontalTimeline _timeline;
     [SerializeField] private float _scrollSpeed;
@@ -53,10 +53,10 @@ public class FocusPoint : ContentInTimeLine
             yield return null;
         }
     }
-    public void StopSlide()
+
+    public void StopFocus()
     {
         showing = false;
         StopAllCoroutines();
     }
-
 }

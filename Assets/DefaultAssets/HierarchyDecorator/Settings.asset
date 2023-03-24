@@ -104,13 +104,13 @@ MonoBehaviour:
         m_StretchHeight: 0
     - prefix: '-'
       name: CONTENT ABOVE TIMELINE
-      font: {fileID: 12800000, guid: 2e177b6f5c064934ea1d3f84d783232b, type: 3}
+      font: {fileID: 12800000, guid: b81823809f0f50e41a28dffc16eaf1db, type: 3}
       fontSize: 14
-      fontAlignment: 3
+      fontAlignment: 8
       fontStyle: 0
       modes:
-      - fontColour: {r: 0, g: 0.30500016, b: 0.9150943, a: 1}
-        backgroundColour: {r: 0.8000001, g: 0.8000001, b: 0.8000001, a: 1}
+      - fontColour: {r: 0, g: 0, b: 0, a: 1}
+        backgroundColour: {r: 0.7311321, g: 0.77507216, b: 1, a: 1}
       - fontColour: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
         backgroundColour: {r: 0.2352941, g: 0.2352941, b: 0.2352941, a: 1}
       style:
@@ -118,7 +118,7 @@ MonoBehaviour:
         m_Normal:
           m_Background: {fileID: 0}
           m_ScaledBackgrounds: []
-          m_TextColor: {r: 0, g: 0.30500016, b: 0.9150943, a: 1}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
         m_Hover:
           m_Background: {fileID: 0}
           m_ScaledBackgrounds: []
@@ -167,10 +167,10 @@ MonoBehaviour:
           m_Right: 0
           m_Top: 0
           m_Bottom: 0
-        m_Font: {fileID: 12800000, guid: 2e177b6f5c064934ea1d3f84d783232b, type: 3}
+        m_Font: {fileID: 12800000, guid: b81823809f0f50e41a28dffc16eaf1db, type: 3}
         m_FontSize: 14
         m_FontStyle: 0
-        m_Alignment: 3
+        m_Alignment: 8
         m_WordWrap: 0
         m_RichText: 1
         m_TextClipping: 0
@@ -495,6 +495,14 @@ MonoBehaviour:
       shown: 0
     - name: ScreenshotCompanion
       shown: 0
+    - name: HorizontalTimeline
+      shown: 0
+    - name: MainSlider
+      shown: 0
+    - name: TESTSTART
+      shown: 0
+    - name: PARENTTEST
+      shown: 0
     - name: ScaleOutTimeLine
       shown: 0
     - name: Content
@@ -519,9 +527,7 @@ MonoBehaviour:
       shown: 0
     - name: PageWithAnimator
       shown: 0
-    - name: HorizontalTimeline
-      shown: 0
-    - name: MainSlider
+    - name: PhotoPage
       shown: 0
     - name: UIController
       shown: 0
@@ -529,9 +535,9 @@ MonoBehaviour:
       shown: 0
     - name: MainSliderValueView
       shown: 0
-    - name: TESTSTART
+    - name: Paralax
       shown: 0
-    - name: PARENTTEST
+    - name: PhotoZoom
       shown: 0
     - name: UIEffect_Demo
       shown: 0

@@ -15,9 +15,6 @@ public abstract class Content : MonoBehaviour
     [SerializeField, Tooltip("Value when hiding ends")]
     protected float maxHideSector;
 
-    [SerializeField]
-    private ContentSector contentSector;
-
     protected MainSlider _slider;
     protected float _sliderValue;
 

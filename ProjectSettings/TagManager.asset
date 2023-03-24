@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MainSlider
-  - Content
   - PhotoPage
+  - MainSlider
+  - HeaderControll
   layers:
   - Default
   - TransparentFX
