@@ -26,7 +26,7 @@ public class FocusPoint : ContentInTimeLine,IFocusPoint
     protected override void Show()
     {
         _timeline.scrollVelocity = 0;
-        _timeline.SlideCorutinine = this;
+        _timeline.SlideCorutinine = this; //кэш куратины ( чтобы выключить еЄ если юзер не долждетс€ конца прит€жени€ и начнет листать дальше)
         StartCoroutine(SlideToPoint());
     }
     IEnumerator SlideToPoint()
@@ -34,6 +34,7 @@ public class FocusPoint : ContentInTimeLine,IFocusPoint
 
         showing = true;
 
+        //провер€ем в какую сторону прит€гивать
         float dir;
         if (transform.position.x > 0) 
             dir = 1;
@@ -45,7 +46,7 @@ public class FocusPoint : ContentInTimeLine,IFocusPoint
             var newpos =  _timeline.TimelineRect.anchoredPosition.x //curent
                         - _scrollSpeed * Time.deltaTime * dir;      //added
 
-            var newX = Mathf.Clamp(newpos, -_timeline.TimelineRect.sizeDelta.x, 0);
+            var newX = Mathf.Clamp(newpos, -_timeline.TimelineRect.sizeDelta.x, 0); // на вс€кий случай 
 
             _timeline.TimelineRect.anchoredPosition = new Vector2(newX, 0f);
 

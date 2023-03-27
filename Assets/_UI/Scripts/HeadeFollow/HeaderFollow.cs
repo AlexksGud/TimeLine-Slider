@@ -5,8 +5,9 @@ using UnityEngine;
 public class HeaderFollow : MonoBehaviour
 {
     [SerializeField] private float _followSpeed;
-    [SerializeField, Range(-45  , 45)] 
-    private float _leftBorder;
+     
+    [SerializeField, Range(-45  , 45)] // 0f - середина экрана
+    private float _screenPosition; 
 
     private Vector3 _startLocalPos;
     private float constY;
@@ -14,20 +15,20 @@ public class HeaderFollow : MonoBehaviour
     private bool _follow;
 
     [SerializeField] private float _clampMin, _clampMax;
+    [SerializeField] private float _smooth, _maxSpeed;
     
     void Start()
     {
         constY = transform.position.y;
         _startLocalPos = new Vector3(transform.localPosition.x,transform.localPosition.y,0);
     }
-  
     void Update()
     {
         if (!_follow) 
             return;
-
+   
         var current = transform.position.x;
-        var dX = Mathf.Lerp(current, _leftBorder, Time.deltaTime * _followSpeed);
+        var dX = Mathf.Lerp(current, _screenPosition, Time.deltaTime * _followSpeed);
 
 
         var newPos = new Vector3(dX, constY, 0);
@@ -37,13 +38,18 @@ public class HeaderFollow : MonoBehaviour
 
         transform.position = newPos;
 
+        ///ѕроверка ушли ли за границу 
         bool IsClamped()
         {    
             var vecForCheck = transform.localPosition.x + dX;
 
             if (vecForCheck <= _clampMax && vecForCheck > _clampMin)
                 return false;
-                
+            
+            // по знаку dX определ€ем направлеие и если хедер за границей,
+            // но движение в противоположную сторону - то разрешаем движение 
+            
+
             if (vecForCheck <= _clampMin && dX < 0)
                 return false;
 
@@ -52,7 +58,7 @@ public class HeaderFollow : MonoBehaviour
 
 
             return true;
-               
+              
         }
     }
 
@@ -79,7 +85,7 @@ public class HeaderFollow : MonoBehaviour
         while (result < 0.01f)
         {
             var current = transform.position.x;
-                result = Mathf.Lerp(current, _leftBorder, Time.deltaTime * _followSpeed);
+                result = Mathf.Lerp(current, _screenPosition, Time.deltaTime * _followSpeed);
 
             transform.position = new Vector3(result, constY, 0);
             yield return null;

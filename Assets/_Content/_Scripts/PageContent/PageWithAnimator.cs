@@ -33,7 +33,6 @@ public class PageWithAnimator : Page
                 }
                   
 
-
             });
 
             OnHide += (() => 
@@ -51,9 +50,10 @@ public class PageWithAnimator : Page
 
 
        }
-       else
-       {
-            //Test subscribe
+        //Test subscribe (можешь сюда не смотреть даже)
+        else
+        {
+           
             OnShow += (() => 
             {
                 transform.position = Vector3.zero;
@@ -67,23 +67,15 @@ public class PageWithAnimator : Page
        }
        
     }
-    private void Start()
-    {
-       // animator.SetBool("Show", false);
-    }
 
     public override void Hide()
     {
         OnHide?.Invoke();
-
     }
 
     public override void Show()
     {
-
-        OnShow?.Invoke();
-
-       
+        OnShow?.Invoke();      
     }
 
    

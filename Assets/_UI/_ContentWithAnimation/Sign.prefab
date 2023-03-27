@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7801440042922348580}
   - component: {fileID: 1509190705952355791}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CloseBut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,6 +247,7 @@ MonoBehaviour:
   _butt: {fileID: 8903511238987519193}
   _closeButt: {fileID: 1509190705952355791}
   _scrollSpeed: 0
+  _backGroundMask: {fileID: 0}
 --- !u!114 &8903511238987519193
 MonoBehaviour:
   m_ObjectHideFlags: 0

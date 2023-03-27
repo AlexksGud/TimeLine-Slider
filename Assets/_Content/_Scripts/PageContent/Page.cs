@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class Page : MonoBehaviour
 {
-    protected MainSlider _slider;
+    protected HorizontalTimeline _slider;
 
     private Vector3 _basepos;
     public virtual void Init()
     {
         _basepos = transform.position;
-        _slider = GameObject.FindGameObjectWithTag("MainSlider")
-                                      .GetComponent<MainSlider>();
+        _slider = GameObject.FindGameObjectWithTag("Player")
+                                      .GetComponent<HorizontalTimeline>();
 
     }
     public abstract void Show();

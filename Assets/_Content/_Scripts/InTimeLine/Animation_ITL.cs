@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Animation_ITL : ContentInTimeLine 
+public class Animation_ITL : ContentInTimeLine
 {
     private Animator _animator;
     private void Awake()
@@ -16,19 +16,20 @@ public class Animation_ITL : ContentInTimeLine
 
         if (IsFar())
             return;
-       
+
         if (InShowRange())
             Show();
 
         if (InHideRange())
             Hide();
     }
+
     [SerializeField] private float _animationDuration;
     protected override void Show()
     {
         if (!_animator.GetBool("Show") && !_hiding)
             StartCoroutine(ShowingCor());
-            
+
     }
     protected override void Hide()
     {
@@ -37,6 +38,8 @@ public class Animation_ITL : ContentInTimeLine
 
     }
 
+    // Отказался от ExitTime в Animator ибо подтормаживает при открытии 
+    // Скромный костыль который знает о длительности анимации чтобы выставлять флаг (_showing / _hiding)
     private bool _showing, _hiding;
     IEnumerator ShowingCor()
     {
@@ -54,6 +57,6 @@ public class Animation_ITL : ContentInTimeLine
         yield return new WaitForSeconds(_animationDuration);
         _hiding = false;
     }
-  
+
 }
 
